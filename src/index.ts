@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
         <a href="https://github.com/Shubhashish-Chakraborty/wifi-toggler" target="_blank">Frontend-Github</a> <br>
         <a href="https://github.com/Shubhashish-Chakraborty/wifi-toggler-api" target="_blank">Backend-Github</a> <br>
     
-        <a href="https://shubhhere.vercel.app">Go to the Website!</a>
+        <a href="https://shubhwifi.vercel.app">Go to the Website!</a>
         
     `)
 })
