@@ -1,8 +1,9 @@
 import express from 'express';
+import { Request , Response } from 'express';
 import mongoose from 'mongoose';
 import cors from "cors";
 import { PORT, MONGO_URL } from './config';
-import { WifiModel } from './db';
+import { WifiDocument, WifiModel } from './db';
 
 const app = express();
 app.use(express.json());
@@ -15,18 +16,18 @@ app.get("/", (req, res) => {
             Wifi-Toggler API is UP!!!
         </h2>
         
+        <a href="https://shubhwifi.vercel.app">Go to the Website!</a> <br>
         <a href="https://github.com/Shubhashish-Chakraborty/wifi-toggler" target="_blank">Frontend-Github</a> <br>
         <a href="https://github.com/Shubhashish-Chakraborty/wifi-toggler-api" target="_blank">Backend-Github</a> <br>
     
-        <a href="https://shubhwifi.vercel.app">Go to the Website!</a>
-        
     `)
 })
 
-app.get("/status", async (req, res) => {
+//@ts-ignore
+app.get("/status", async (req:Request , res) => {
     try {
         // Fetch the first document in the WiFi collection
-        const wifi = await WifiModel.findOne();
+        const wifi = await WifiModel.findOne<WifiDocument>();
 
         // If no document exists, return a default status of false
         if (!wifi) {
@@ -34,7 +35,7 @@ app.get("/status", async (req, res) => {
         }
 
         // Return the current status
-        res.status(200).json({ isOn: wifi.status });
+        res.status(200).json({ isOn: wifi.isOn });
     } catch (error) {
         console.error("Error fetching WiFi status:", error);
         res.status(500).json({ message: "Internal server error." });
