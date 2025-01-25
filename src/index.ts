@@ -23,6 +23,24 @@ app.get("/", (req, res) => {
     `)
 })
 
+app.get("/status", async (req, res) => {
+    try {
+        // Fetch the first document in the WiFi collection
+        const wifi = await WifiModel.findOne();
+
+        // If no document exists, return a default status of false
+        if (!wifi) {
+            return res.status(200).json({ isOn: false });
+        }
+
+        // Return the current status
+        res.status(200).json({ isOn: wifi.status });
+    } catch (error) {
+        console.error("Error fetching WiFi status:", error);
+        res.status(500).json({ message: "Internal server error." });
+    }
+});
+
 const initializeDatabase = async () => {
     const existingWifi = await WifiModel.findOne();
     if (!existingWifi) {
