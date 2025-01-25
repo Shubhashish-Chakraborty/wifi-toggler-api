@@ -16,7 +16,6 @@ app.get("/", (req, res) => {
             Wifi-Toggler API is UP!!!
         </h2>
         
-        <a href="https://shubhwifi.vercel.app">Go to the Website!</a> <br>
         <a href="https://github.com/Shubhashish-Chakraborty/wifi-toggler" target="_blank">Frontend-Github</a> <br>
         <a href="https://github.com/Shubhashish-Chakraborty/wifi-toggler-api" target="_blank">Backend-Github</a> <br>
     
